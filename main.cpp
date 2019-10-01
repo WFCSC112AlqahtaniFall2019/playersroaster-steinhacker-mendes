@@ -3,10 +3,27 @@
 using namespace std;
 
 struct Player {
-  /*your code here*/
+  string playerName;
+    int playerJersy;
+    int playerRating;
 };
 
-void initialize(vector<Player>& v);
+void initialize(vector<Player>& v){
+
+    cout << "Enter player " << i + 1 << "'s name:" << endl;
+    cin >> playerName;
+    v.at(1).playerName = playerName;
+
+    cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
+    cin >> playerJersy;
+    v.at(i).playerJersy = playerJersy;
+
+    cout << "Enter player " << i + 1 << "'s rating:" << endl;
+    cin >> playerRating;
+    playerStats.at(i).playerRating = playerRating;
+    cout << endl;
+}
+
 void output(const vector<Player>& v);
 void addPlayer(vector<Player>& v, Player player1);
 void deletePlayer(vector<Player>& v, int playerNumber);
@@ -15,9 +32,10 @@ void aboveRating(const vector<Player>& v, int rating);
 
 int main() {
 
-    vector<string> Names(5);
+    vector<Player> playerStats(5);
+    /*vector<string> Names(5);
     vector<int> jerseyNums(5);
-    vector<int> ratingNums(5);
+    vector<int> ratingNums(5);*/
 
     unsigned int i;
     string playerName;
@@ -26,26 +44,26 @@ int main() {
     char menuOp;
 
     //initialize the roasters
-    for (i = 0; i < jerseyNums.size(); ++i) {
+    for (i = 0; i < playerStats.size(); ++i) {
 
         cout << "Enter player " << i + 1 << "'s name:" << endl;
         cin >> playerName;
-        Names.at(i) = playerName;
+        playerStats.at(i).playerName = playerName;
 
         cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
         cin >> playerJersy;
-        jerseyNums.at(i) = playerJersy;
+        playerStats.at(i).playerJersy = playerJersy;
 
         cout << "Enter player " << i + 1 << "'s rating:" << endl;
         cin >> playerRating;
-        ratingNums.at(i) = playerRating;
+        playerStats.at(i).playerRating = playerRating;
         cout << endl;
     }
 
     cout << "ROSTER" << endl;
-    for (i = 0; i < jerseyNums.size(); ++i) {
-        cout << "Player " << i + 1 << " -- Name: " <<Names.at(i)<<" -- Jersey number: "
-             << jerseyNums.at(i) << ", Rating: " << ratingNums.at(i) << endl;
+    for (i = 0; i < playerStats.size(); ++i) {
+        cout << "Player " << i + 1 << " -- Name: " <<playerStats.at(i).playerName<<" -- Jersey number: "
+             << playerStats.at(i).playerJersy << ", Rating: " << playerStats.at(i).playerRating << endl;
     }
     cout << endl;
 
@@ -65,7 +83,7 @@ int main() {
         if (menuOp == 'a') {
             cout << "Enter a new player's jersey number:" << endl;
             cin >> playerJersy;
-            jerseyNums.push_back(playerJersy);
+            playerStats.push_back(playerJersy);
 
 
             cout << "Enter the player's rating:" << endl;
