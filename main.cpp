@@ -3,72 +3,119 @@
 using namespace std;
 
 struct Player {
-  string playerName;
-    int playerJersy;
+    string playerName;
+    int playerJersey;
     int playerRating;
 };
 
+void initialize(vector<Player>& v) {
 
+    for (int i = 0; i < v.size(); ++i) {
 
-void initialize(vector<Player>& v){
-    for (int i = 0; i < 5; i++){
+        cout << "Enter player " << i + 1 << "'s name:" << endl;
+        cin >> v.at(i).playerName;
 
-    cout << "Enter player " << i + 1 << "'s name:" << endl;
-    cin >> v.at(i).playerName;
+        cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
+        cin >> v.at(i).playerJersey;
 
-    cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
-    cin >> v.at(i).playerJersy;
+        cout << "Enter player " << i + 1 << "'s rating:" << endl;
+        cin >> v.at(i).playerRating;
 
-    cout << "Enter player " << i + 1 << "'s rating:" << endl;
-    cin >> v.at(i).playerRating;
+        cout << endl;
+    }
 
+    cout << "ROSTER" << endl;
+    for ( int i = 0; i < v.size(); ++i) {
+        cout << "Player " << i + 1 << " -- Name: " << v.at(i).playerName << " -- Jersey number: "
+             << v.at(i).playerJersey << ", Rating: " << v.at(i).playerRating << endl;
+    }
     cout << endl;
 }
 
-void output(const vector<Player>& v);
-
-void addPlayer(vector<Player>& v, Player player1);
-    Player player1;
-    cout << "Enter a new player's jersey number:" << endl;
-    cin >> player1.playerJersy;
-    v.push_back(player1.playerJersy);
-
-
-    cout << "Enter the player's rating:" << endl;
-    int playerRating;
-    cin >> playerRating;
-    player.playerName =
-    v.push_back(player12);
-    cout << endl;
-
-void deletePlayer(vector<Player>& v, int playerNumber);
-
-
-    //find the player using her/his jersey number
+void output(const vector<Player>& v){
+    cout << "ROSTER" << endl;
     for (int i = 0; i < v.size(); ++i) {
-        if (v.at(i).playerJersy == playerNumber) {
-            playerJersy = i;
-        }
+        cout << "Player " << i + 1 << " -- Name: " <<v.at(i).playerName<<" -- Jersey number: "
+             << v.at(i).playerJersey << ", Rating: " << v.at(i).playerRating << endl;
     }
-    //shift the vectors' elements up to remove the element
-    for (i = 0; i < jerseyNums.size() - 1; ++i) {
-        if (i >= playerJersy) {
-            Names.at(i) = Names.at(i + 1);
-            jerseyNums.at(i) = jerseyNums.at(i + 1);
-            ratingNums.at(i) = ratingNums.at(i + 1);
-        }
-    }
-    Names.pop_back();
-    jerseyNums.pop_back();
-    ratingNums.pop_back();
     cout << endl;
-void updateRating(vector<Player>& v, int playerNumber, int rating);
-void aboveRating(const vector<Player>& v, int rating);
 
+}
+
+void addPlayer(vector<Player>& v, Player player1) {
+
+    cout << "Enter a new player's jersey number:" << endl;
+    cin >> player1.playerJersey;
+    cout << "Enter the player's rating:" << endl;
+    cin >> player1.playerRating;
+    cout << "Enter the player's name:" << endl;
+    cin >> player1.playerName;
+    v.push_back(player1);
+    cout << endl;
+
+
+
+}
+
+
+void deletePlayer(vector<Player>& v, int playerNumber){
+
+
+
+//find the player using her/his jersey number
+    for (int i = 0; i < v.size(); ++i) {
+        if (v.at(i).playerJersey == playerNumber) {
+            playerNumber = i;
+        }
+    }
+
+
+//shift the vectors' elements up to remove the element
+
+    for (int i = 0; i < v.size() - 1; ++i) {
+        if (i >= playerNumber) {
+            v.at(i).playerName = v.at(i + 1).playerName;
+            v.at(i).playerJersey = v.at(i + 1).playerJersey;
+            v.at(i).playerRating = v.at(i + 1).playerRating;
+        }
+    }
+    v.pop_back();
+
+
+
+
+    cout << endl;
+}
+void updateRating(vector<Player>& v, int playerNumber, int rating){
+
+
+
+    for (int i = 0; i < v.size(); ++i) {
+        if (v.at(i).playerJersey == playerNumber) {
+            v.at(i).playerRating = rating;
+        }
+    }
+    cout << endl;
+
+
+}
+void aboveRating(const vector<Player>& v, int rating) {
+
+    cout << "ABOVE " << rating << endl;
+    for (int i = 0; i < v.size(); ++i) {
+        if (v.at(i).playerRating > rating) {
+            cout << "Player " << i + 1 << " -- Jersey number: "
+                 << v.at(i).playerJersey << ", Rating: "
+                 << v.at(i).playerRating << endl;
+        }
+    }
+    cout << endl;
+}
 int main() {
 
-    vector<Player> playerStats(5);
-
+    vector<string> Names(5);
+    vector<int> jerseyNums(5);
+    vector<int> ratingNums(5);
 
     unsigned int i;
     string playerName;
@@ -76,17 +123,11 @@ int main() {
     int playerRating;
     char menuOp;
 
-    initialize(playerStats);
+    vector <Player> status (5);
+
+    initialize(status);
 
 
-
-
-    cout << "ROSTER" << endl;
-    for (i = 0; i < playerStats.size(); ++i) {
-        cout << "Player " << i + 1 << " -- Name: " <<playerStats.at(i).playerName<<" -- Jersey number: "
-             << playerStats.at(i).playerJersy << ", Rating: " << playerStats.at(i).playerRating << endl;
-    }
-    cout << endl;
 
     do {
         cout << "MENU" << endl;
@@ -102,31 +143,29 @@ int main() {
 
         //Add
         if (menuOp == 'a') {
-         Player add;
-         addPlayer(playerStats, add);
+            Player object;
+            addPlayer(status, object);
         }
 
             //Delete
         else if (menuOp == 'd') {
             cout << "Enter a jersey number:" << endl;
-            int playerNumber;
-            cin >> playerNumber;
-            deletePlayer(v,playerNumber);
+            cin >> playerJersy;
+
+            deletePlayer(status, playerJersy);
+
+            cout << endl;
         }
 
             //Update
         else if (menuOp == 'u') {
+            int playerNumber;
             cout << "Enter a jersey number:" << endl;
-            cin >> playerJersy;
-
+            cin >> playerNumber;
+            int rating;
             cout << "Enter a new rating for player:" << endl;
-            cin >> playerRating;
-
-            for (i = 0; i < jerseyNums.size(); ++i) {
-                if (jerseyNums.at(i) == playerJersy) {
-                    ratingNums.at(i) = playerRating;
-                }
-            }
+            cin >> rating;
+            updateRating(status, playerNumber, rating);
             cout << endl;
         }
 
@@ -135,26 +174,15 @@ int main() {
             cout << "Enter a rating:" << endl;
             cin >> playerRating;
             cout << endl;
+            aboveRating(status, playerRating);
 
-            cout << "ABOVE " << playerRating << endl;
-            for (i = 0; i < jerseyNums.size(); ++i) {
-                if (ratingNums.at(i) > playerRating) {
-                    cout << "Player " << i + 1 << " -- Jersey number: "
-                         << jerseyNums.at(i) << ", Rating: "
-                         << ratingNums.at(i) << endl;
-                }
-            }
             cout << endl;
 
         }
 
-        //output
+            //output
         else if (menuOp == 'o') {
-            cout << "ROSTER" << endl;
-            for (i = 0; i < jerseyNums.size(); ++i) {
-                cout << "Player " << i + 1 << " -- Name: " <<Names.at(i)<<" -- Jersey number: "
-                     << jerseyNums.at(i) << ", Rating: " << ratingNums.at(i) << endl;
-            }
+            output(status);
             cout << endl;
         }
 
